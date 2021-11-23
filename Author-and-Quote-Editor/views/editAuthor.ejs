@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Updating Author Information</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<!-- Import bootstrap cdn -->
+    <link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity=
+"sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+        crossorigin="anonymous">
+  
+    <!-- Import jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity=
+"sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous">
+    </script>
+      
+    <script src=
+"https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity=
+"sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous">
+    </script>
+
+</head>
+<body>
+<script>
+$(window).on('load', function() {
+        $('#updateAuthorModal').modal('show');
+    });
+</script
+
+<div class="modal fade" id="updateAuthorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Updating Author</h5>
+        <a class="btn btn-secondary" href="/authors" role="button">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body">
+        <form action="/author/edit" method="POST">
+
+	<input type="hidden" name="authorId" value="<%=authorInfo[0].authorId%>">
+  <br>
+  First Name:<input type="text" name="fName" value="<%=authorInfo[0].firstName%>">
+  <br>
+  Last Name:<input type="text" name="lName" value="<%=authorInfo[0].lastName%>">
+  <br>
+  Date of Birth: <input type="date" name="dob" value="<%=authorInfo[0].dobISO%>">
+  <br>
+	Date of Death: <input type="date" name="dod" value="<%=authorInfo[0].dodISO%>">
+  <br>
+	Sex:
+	<input type="radio" id="male" name="sex" value="M"
+    <% if(authorInfo[0].sex == "M") { %>
+      checked
+    <% } %>
+    > M
+
+	<input type="radio" id="female" name="sex" value="F"
+    <%= (authorInfo[0].sex == "F")?"checked":"" %>
+	> F
+	<br>
+	Profession: <input type="text" name="profession" value="<%=authorInfo[0].profession%>">
+  <br>
+	Country: <input type="text" name="country" value="<%=authorInfo[0].country%>">
+  <br>
+	Portrait: <input type="url" name="portrait" value="<%=authorInfo[0].portrait%>">
+  <br>
+	Biography: <br><textarea id="txtAreaBio" name= "biography" rows="4" cols="50"><%=authorInfo[0].biography%></textarea>
+  <br><br>
+  <button class="btn btn-primary">Update Author</button>
+</form>
+      </div>
+      <div class="modal-footer">
+        <% if(typeof message != "undefined"){%>
+        <%= message %>
+        <%}%>
+        <br>
+        <a class="btn btn-secondary" href="/authors" role="button">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
