@@ -1,5 +1,4 @@
 # Author & Quote Editor
-
 <br>
 <img src="Author & Quote Editor .gif"> </img>
 <br>
